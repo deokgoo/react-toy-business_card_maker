@@ -1,5 +1,10 @@
 import React from 'react';
+import LoginModal from '../../components/login-modal/login-modal';
 
-const Login = (props) => <h1>login</h1>
+const Login = (props) => {
+  return (
+    <LoginModal />
+  )
+}
 
 export default Login;
