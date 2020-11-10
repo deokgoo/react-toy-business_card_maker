@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './login-modal.module.css';
+import Authentication from '../../services/firebase/authentication';
 
 const LoginModal = (props) => {
   return (
@@ -12,7 +13,9 @@ const LoginModal = (props) => {
           </div>
         </div>
         <div className={style.body}>
-
+          <div className={style.contentTitle}>Login</div>
+          <button className={style.btn} onClick={() => {new Authentication().googleLogin()}}>Google</button>
+          <button className={style.btn}>Github</button>
         </div>
         <div className={style.footer}>
           <div className={style.description}>
