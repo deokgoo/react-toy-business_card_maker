@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Main from '../pages/main/main';
 import Login from '../pages/login/login';
 
-const Router = () => {
+const Router = ({ authService }) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -11,7 +11,7 @@ const Router = () => {
           <Main/>
         </Route>
         <Route path="/login">
-          <Login/>
+          <Login authService={authService}/>
         </Route>
       </Switch>
     </BrowserRouter>

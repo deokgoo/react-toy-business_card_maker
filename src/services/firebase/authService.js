@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-class Authentication {
+class AuthService {
   constructor() {
     let firebaseConfig = {
       apiKey: "AIzaSyA59RzXLSK59SbARWpW-qSNwrmNKwgq7AM",
@@ -15,21 +15,26 @@ class Authentication {
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   }
-  async googleLogin() {
-    let provider = new firebase.auth.GoogleAuthProvider();
-    let res = await firebase.auth().signInWithPopup(provider)
-    try {
-      let {user, credential: accessToken} = res;
-    } catch(err) {
-      var errorCode = err.code;
-      var errorMessage = err.message;
-      // The email of the user's account used.
-      var email = err.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = err.credential;
-      console.log(errorMessage);
+
+  async login(providerName) {
+    let provider = null;
+    if(providerName === 'Google')
+      provider = new firebase.auth.GoogleAuthProvider();
+    else {
+      provider = new firebase.auth.GithubAuthProvider();
     }
+    return firebase.auth().signInWithPopup(provider);
+  }
+
+  async authChangeHandler(onUserChanged) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        onUserChanged(user)
+      } else {
+        console.log('not login');
+      }
+    })
   }
 }
 
-export default Authentication;
+export default AuthService;

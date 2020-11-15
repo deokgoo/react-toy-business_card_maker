@@ -1,8 +1,22 @@
-import React from 'react';
+import React  from 'react';
+import { useHistory } from 'react-router-dom';
 import style from './login-modal.module.css';
-import Authentication from '../../services/firebase/authentication';
 
-const LoginModal = (props) => {
+const LoginModal = ({ authService }) => {
+  const history = useHistory();
+  const goToMaker = userId => {
+    console.log(userId);
+    history.push({
+      pathName: '/maker',
+      state: {id: userId},
+    })
+  }
+
+  const onLogin = evt => {
+    authService.login(evt.currentTarget.textContent)
+      .then(data => goToMaker(data.user?.uid));
+  }
+
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
@@ -14,7 +28,7 @@ const LoginModal = (props) => {
         </div>
         <div className={style.body}>
           <div className={style.contentTitle}>Login</div>
-          <button className={style.btn} onClick={() => {new Authentication().googleLogin()}}>Google</button>
+          <button className={style.btn} onClick={onLogin}>Google</button>
           <button className={style.btn}>Github</button>
         </div>
         <div className={style.footer}>
