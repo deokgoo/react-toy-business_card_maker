@@ -1,18 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Main from '../pages/main/main';
+import Maker from '../pages/maker/maker';
 import Login from '../pages/login/login';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const Router = ({ authService }) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Main/>
-        </Route>
-        <Route path="/login">
-          <Login authService={authService}/>
-        </Route>
+        <Route exact path="/" render={() => <Login authService={authService}/>} />
+        <Route path="/maker" component={Maker}/>
       </Switch>
     </BrowserRouter>
   )

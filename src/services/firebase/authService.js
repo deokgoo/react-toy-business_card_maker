@@ -26,7 +26,7 @@ class AuthService {
     return firebase.auth().signInWithPopup(provider);
   }
 
-  async authChangeHandler(onUserChanged) {
+  async authChange(onUserChanged) {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         onUserChanged(user)

@@ -1,13 +1,12 @@
-import React  from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import style from './login-modal.module.css';
 
 const LoginModal = ({ authService }) => {
   const history = useHistory();
   const goToMaker = userId => {
-    console.log(userId);
     history.push({
-      pathName: '/maker',
+      pathname: '/maker',
       state: {id: userId},
     })
   }
@@ -16,6 +15,12 @@ const LoginModal = ({ authService }) => {
     authService.login(evt.currentTarget.textContent)
       .then(data => goToMaker(data.user?.uid));
   }
+
+  useEffect(() => {
+    authService.onAuthStateChanged(user => {
+      user && goToMaker(user.uid);
+    })
+  })
 
   return (
     <div className={style.wrapper}>
