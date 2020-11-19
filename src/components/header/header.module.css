@@ -1,0 +1,22 @@
+.header {
+  height: 25%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  height: 15%;
+}
+
+.logo {
+  width: 100px;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
