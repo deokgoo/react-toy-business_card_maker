@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import style from './editor.module.css';
-import CardItem from '../card-item/card-item';
+import CardEditorForm from '../card-editor-form/card-editor-form';
 
-const Editor = () => {
-  const [items] = useState([1, 2, 3]);
+const Editor = ({ cards }) => {
   return (
     <div className={style.container}>
       <div className={style.titleContainer}>
         <h1 className={style.title}>Card Maker</h1>
       </div>
       {
-        items.map((x) => <CardItem ke={x}/>)
+        cards.map((card) => <CardEditorForm card={card} key={card.name}/>)
       }
     </div>
   );

@@ -1,5 +1,27 @@
 .container {
+  display: flex;
+  flex-direction: column;
   width: 50%;
   height: 100%;
-  background-color: aqua;
+  padding: 15px;
+}
+
+.titleContainer {
+  display: flex;
+  height: 120px;
+  justify-content: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: RGB(65,81,92);
+}
+
+.cards {
+  width: 100%;
+  height: 100%;
+  padding: 0.5em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

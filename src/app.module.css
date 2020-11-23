@@ -26,7 +26,6 @@ code {
   background-color: makerWhite;
   display: flex;
   flex-direction: column;
-  color: white;
   margin: auto;
   transition: all 1s ease;
 }
