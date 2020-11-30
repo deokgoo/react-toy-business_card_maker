@@ -2,17 +2,24 @@ import React  from 'react';
 import style from './editor.module.css';
 import CardEditorForm from '../card-editor-form/card-editor-form';
 
-const Editor = ({ cards }) => {
+const Editor = ({ cards, updateCard, deleteCard }) => {
   return (
     <div className={style.container}>
       <div className={style.titleContainer}>
         <h1 className={style.title}>Card Maker</h1>
       </div>
       {
-        cards.map((card) => <CardEditorForm card={card} key={card.name}/>)
+        Object.keys(cards).map(key => (
+          <CardEditorForm
+            key={key}
+            card={cards[key]}
+            updateCard={updateCard}
+            deleteCard={deleteCard}
+          />)
+        )
       }
     </div>
   );
-}
+};
 
 export default Editor;

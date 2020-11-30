@@ -9,12 +9,19 @@ const Preview = ({ cards }) => {
         <h1 className={style.title}>Card Preview</h1>
       </div>
       <ul className={style.cards}>
-        {cards.map(card => <Card card={card} key={card.name}/>)}
+        {
+          Object.keys(cards).map(key => (
+            <Card
+              key={key}
+              card={cards[key]}
+            />)
+          )
+        }
       </ul>
 
     </div>
 
   );
-}
+};
 
 export default Preview;

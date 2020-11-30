@@ -13,7 +13,7 @@ const getStyle = (theme) => {
     default:
       throw new Error(`unknown theme ${theme}`);
   }
-}
+};
 const Card = ({ card }) => {
   const {
     name,
