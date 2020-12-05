@@ -27,7 +27,7 @@ code {
   display: flex;
   flex-direction: column;
   margin: auto;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
 }
 
 .notLogin {

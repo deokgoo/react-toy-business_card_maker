@@ -3,7 +3,7 @@
   flex-direction: column;
   width: 50%;
   height: 100%;
-  padding: 15px;
+  box-sizing: border-box;
 }
 
 .titleContainer {
@@ -19,9 +19,10 @@
 
 .cards {
   width: 100%;
-  height: 100%;
+  box-sizing: border-box;
   padding: 0.5em 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }

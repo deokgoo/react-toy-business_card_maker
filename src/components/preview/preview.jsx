@@ -10,17 +10,10 @@ const Preview = ({ cards }) => {
       </div>
       <ul className={style.cards}>
         {
-          Object.keys(cards).map(key => (
-            <Card
-              key={key}
-              card={cards[key]}
-            />)
-          )
+          Object.keys(cards).map(key => <Card key={key} card={cards[key]} />)
         }
       </ul>
-
     </div>
-
   );
 };
 

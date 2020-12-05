@@ -1,73 +1,63 @@
-import React, {useRef} from 'react';
-import style from './card-editor-form.module.css'
+import React, { useRef, useState } from 'react';
+import style from './card-add-form.module.css';
 import Button from '../button/button';
 
-const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardAddForm = ({ FileInput, addCard }) => {
+  const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
   const themeRef = useRef();
-
-  const {
-    name,
-    company,
-    title,
-    email,
-    message,
-    theme,
-  } = card;
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
 
   const onFileChange = file => {
-    console.log(file);
-    updateCard({
-      ...card,
+    setFile({
       fileName: file.name,
-      fileURL: file.url
-    });
-  }
-
-  const onChange = event => {
-    if (event.currentTarget == null) {
-      return;
-    }
-    event.preventDefault();
-    updateCard({
-      ...card,
-      [event.currentTarget.name]: event.currentTarget.value,
+      fileURL: file.url,
     });
   };
 
-
-  const onSubmit = () => {
-    deleteCard(card);
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    const card = {
+      id: Date.now(),
+      name: nameRef.current.value || '',
+      company: companyRef.current.value || '',
+      title: titleRef.current.value || '',
+      email: emailRef.current.value || '',
+      message: messageRef.current.value || '',
+      theme: themeRef.current.value || '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
+    };
+    formRef.current.reset();
+    setFile({ fileName: null, fileURL: null });
+    addCard(card);
   };
 
   return (
-    <form className={style.form}>
+    <form className={style.form} ref={formRef}>
       <input
         className={style.input}
         ref={nameRef}
         type="text"
         name="name"
-        onChange={onChange}
-        value={name}
+        placeholder="name"
       />
       <input
         className={style.input}
         ref={companyRef}
         type="text"
         name="company"
-        onChange={onChange}
-        value={company}
+        placeholder="company"
       />
       <select
         className={style.select}
         ref={themeRef}
         name="theme"
-        onChange={onChange}
-        value={theme}>
+        placeholder="theme">
         <option value="light">Light</option>
         <option value="dark">Dark</option>
         <option value="colorful">Colorful</option>
@@ -77,29 +67,26 @@ const CardEditorForm = ({ FileInput, card, updateCard, deleteCard }) => {
         ref={titleRef}
         type="text"
         name="title"
-        onChange={onChange}
-        value={title}
+        placeholder="title"
       />
       <input
         className={style.input}
         ref={emailRef}
         type="text"
         name="email"
-        onChange={onChange}
-        value={email}/>
+        placeholder="email"/>
       <textarea
         className={style.textarea}
         ref={messageRef}
         name="message"
-        onChange={onChange}
-        value={message}
+        placeholder="message"
       />
       <div className={style.fileInput}>
-        <FileInput name={card.fileName} onFileChange={onFileChange}/>
+        <FileInput name={file.fileName} onFileChange={onFileChange}/>
       </div>
-      <Button name="Delete" onClick={onSubmit} value='Delete'/>
+      <Button name="Add" onClick={onSubmit}/>
     </form>
-  )
+  );
 };
 
-export default CardEditorForm;
+export default CardAddForm;

@@ -4,19 +4,19 @@ import Header from "./components/header/header";
 import Router from "./router/router";
 import Footer from "./components/footer/footer";
 
-const App = ({authService}) => {
+const App = ({authService, FileInput}) => {
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     authService.authChange(() => {
       setIsLogin(true);
     })
-  }, [authService])
+  }, [authService]);
 
   return (
     <div className={style.wrapper}>
       <div className={`${style.container} ${isLogin ? style.login : style.notLogin}`}>
         <Header isLogin={isLogin}/>
-        <Router authService={authService} isLogin={isLogin}/>
+        <Router authService={authService} isLogin={isLogin} FileInput={FileInput}/>
         <Footer isLogin={isLogin}/>
       </div>
     </div>

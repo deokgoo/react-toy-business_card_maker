@@ -1,10 +1,12 @@
+@value makerGreen, makerWhite from '../../common/colors.module.css';
+
 .footer {
   height: 15%;
-  background-color: black;
+  background-color: makerGreen;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
 }
 
 .login {
@@ -12,6 +14,9 @@
 }
 
 .description {
+  color: makerWhite;
   font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
+
 }
