@@ -1,4 +1,3 @@
-@value mediaQuery from '../../common/size.module.css';
 @value makerWhite from '../../common/colors.module.css';
 
 .maker {
@@ -15,7 +14,7 @@
   flex: 1;
 }
 
-@media screen and (max-width: mediaQuery) {
+@media screen and (max-width: 576px) {
   .container {
     flex-direction: column;
     justify-content: center;

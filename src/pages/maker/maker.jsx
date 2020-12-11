@@ -1,39 +1,19 @@
 import React, { useState } from 'react';
-import style from './maker.module.css';
+// import { useHistory } from 'react-router-dom'
 import Editor from '../../components/editor/editor';
 import Preview from '../../components/preview/preview';
+import style from './maker.module.css';
 
-const Maker = ({ FileInput }) => {
-  const [cards, setCards] = useState({
-    '1': {
-      id: '1',
-      name: 'deok',
-      company: 'FFG',
-      theme: 'colorful',
-      title: 'deokTitle',
-      email: 'kkddgg1001@gmail.com',
-      message: 'message',
-      fileName: null,
-      fileURL: null,
-    },
-    '2': {
-      id: '2',
-      name: 'deok2',
-      company: 'FFG',
-      theme: 'dark',
-      title: 'deokTitle',
-      email: 'kkddgg1001@gmail.com',
-      message: 'message',
-      fileName: null,
-      fileURL: null,
-    },
-  });
+const Maker = ({FileInput, cardRepository}) => {
+  // const historyState = useHistory().state;
+  const [cards, setCards] = useState({});
+  const [userId] = useState(123);
 
   const createOrUpdateCard = card => {
     setCards(cards => {
       const updated = {...cards};
       updated[card.id] = card;
-      return updated;
+      cardRepository.saveCard(userId, updated);
     });
   };
 
@@ -52,8 +32,9 @@ const Maker = ({ FileInput }) => {
   return (
     <section className={style.maker}>
       <div className={style.container}>
-        <Editor FileInput={FileInput} cards={cards} updateCard={createOrUpdateCard} deleteCard={deleteCard} addCard={addCard} />
-        <Preview cards={cards} />
+        <Editor FileInput={FileInput} cards={cards} updateCard={createOrUpdateCard} deleteCard={deleteCard}
+                addCard={addCard}/>
+        <Preview cards={cards}/>
       </div>
     </section>
   );

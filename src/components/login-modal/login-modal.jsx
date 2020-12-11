@@ -17,7 +17,7 @@ const LoginModal = ({authService}) => {
   }
 
   useEffect(() => {
-    authService.authChange(user => {
+    authService.onAuthChange(user => {
       user && goToMaker(user.uid);
     });
   })
