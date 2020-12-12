@@ -3,7 +3,7 @@ import style from './editor.module.css';
 import CardEditorForm from '../card-editor-form/card-editor-form';
 import CardAddForm from '../card-add-form/card-add-form';
 
-const Editor = ({ FileInput, cards, updateCard, deleteCard, addCard }) => {
+const Editor = ({ FileInput, cards, updateCard, deleteCard }) => {
   return (
     <div className={style.container}>
       <div className={style.titleContainer}>
@@ -20,7 +20,7 @@ const Editor = ({ FileInput, cards, updateCard, deleteCard, addCard }) => {
           />)
         )
       }
-      <CardAddForm FileInput={FileInput} addCard={addCard}/>
+      <CardAddForm FileInput={FileInput} addCard={updateCard}/>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const LoginModal = ({authService}) => {
   const goToMaker = userId => {
     history.push({
       pathname: '/maker',
-      state: {id: userId},
+      state: { id: userId },
     })
   }
 

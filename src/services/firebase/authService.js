@@ -12,6 +12,10 @@ class AuthService {
     firebaseApp.auth().signOut();
   }
 
+  getUid() {
+    return firebaseApp.auth().currentUser.uid;
+  }
+
   onAuthChange(onUserChanged) {
     firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {

@@ -10,7 +10,7 @@ const Router = ({ authService, cardRepository, isLogin, FileInput }) => {
       <div className={`${isLogin ? style.login : style.default}`}>
         <Switch>
           <Route exact path="/" render={() => <Login authService={authService}/>} />
-          <Route path="/maker" render={() => <Maker FileInput={FileInput} cardRepository={cardRepository}/>} />
+          <Route path="/maker" render={() => <Maker authService={authService} FileInput={FileInput} cardRepository={cardRepository}/>} />
         </Switch>
       </div>
     </BrowserRouter>
