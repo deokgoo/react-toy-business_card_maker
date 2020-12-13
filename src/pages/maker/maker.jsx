@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import Editor from '../../components/editor/editor';
 import Preview from '../../components/preview/preview';
 import style from './maker.module.css';
 
 const Maker = ({authService, FileInput, cardRepository}) => {
   const [cards, setCards] = useState({});
+
+  useEffect(() => {
+    const stopSync = cardRepository.syncCards(authService.getUid(), cards => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [authService, cardRepository]);
 
   const createOrUpdateCard = card => {
     setCards(cards => {
